@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini WhatsApp</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <h1>All chats</h1>
+    <a href="/chats/new" class="newchat"><b>New Chat</b></a>
+    <br/>
+
+    <% for(let chat of chats){ %>
+        <div class="chat">
+            <p><b>From: </b><%= chat.from %> </p>
+            <p><b>To: </b><%= chat.to %> </p>
+            <div class="msg">   
+                <p><b>Msg:</b> <%= chat.msg %> </p>
+            </div>
+            <hr>
+            <p>
+                <b>Time: </b><%= chat.created_at.toString().split(" ")[4] %> &emsp;
+                <b>Date: </b><%= chat.created_at.toString().split(" ").slice(0,4).join("-") %>
+            </p>
+            <div class="form-box">
+                <form method="GET" action="/chats/<%= chat.id %>/edit">
+                    <button class="form-button-style">Edit</button>
+                </form>
+                <form action="/chats/<%= chat._id %>?_method=DELETE" method="POST" class="delete-form">
+                    <button type="button" class="form-button-style delete-chat-btn">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% } %>
+
+    <!-- Custom Alert Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this chat?</p>
+            <div class="modal-buttons">
+                <button class="delete-btn" id="confirmDelete">Yes, Delete</button>
+                <button class="cancel-btn" id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let deleteForm; // Store reference to the form
+
+        document.querySelectorAll(".delete-chat-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                deleteForm = this.closest("form"); // Get the form related to the clicked button
+                document.getElementById("deleteModal").style.display = "flex"; // Show modal
+            });
+        });
+
+        document.getElementById("confirmDelete").addEventListener("click", function () {
+            deleteForm.submit(); // Submit the form if "Yes" is clicked
+        });
+
+        document.getElementById("cancelDelete").addEventListener("click", function () {
+            document.getElementById("deleteModal").style.display = "none"; // Hide modal if "Cancel" is clicked
+        });
+    </script>
+</body>
+</html>

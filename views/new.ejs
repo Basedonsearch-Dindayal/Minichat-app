@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Chat</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://images.unsplash.com/photo-1531685250784-7569952593d2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80");
+            background-color: rgba(0, 0, 0, 0.5);
+            background-blend-mode: overlay;
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the image */
+        }
+
+        /* Container for the form */
+        .form-container {
+            background-color: rgba(232, 215, 122, 0.9); /* Slightly transparent white */
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Heading styling */
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Input and textarea styling */
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        /* Placeholder styling */
+        ::placeholder {
+            color: #999;
+        }
+
+        /* Button styling */
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 1rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            input[type="text"],
+            textarea,
+            button[type="submit"] {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Write new chat..</h2>
+        <form action="/chats" method="POST">
+            <label for="sender">Who are you</label>
+            <input type="text" placeholder="Who are you" name="from" required>
+            
+            <label for="message">Write something here...</label>
+            <textarea name="msg" placeholder="Write something here..." required></textarea>
+            
+            <label for="receiver">Add receiver</label>
+            <input type="text" placeholder="Add receiver" name="to" required>
+            
+            <button type="submit">Create Chat</button>
+        </form>
+    </div>
+</body>
+</html>

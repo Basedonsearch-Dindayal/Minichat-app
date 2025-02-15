@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit chat</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff5cc; /* Soft Pink */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(106, 13, 173, 0.3); /* Royal Purple shadow */
+    width: 380px;
+    text-align: center;
+    border: 3px solid #6a0dad; /* Deep Royal Purple */
+}
+
+p {
+    color: #6a0dad;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #e6e6fa ;
+}
+
+b {
+    color: #e42259; /* Elegant Gold */
+}
+
+textarea {
+    width: 90%;
+    height: 120px;
+    border: 2px solid #ff69b4; /* Rich Pink */
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    background: #fff0f6; /* Light Pink */
+    resize: none;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+textarea:focus {
+    border-color: #6a0dad; /* Royal Purple */
+    background: #f8e6ff; /* Softer lavender */
+}
+
+button {
+    background: linear-gradient(to right, #6a0dad, #ff69b4);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0px 4px 10px rgba(106, 13, 173, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(to right, #ff69b4, #6a0dad);
+    transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <p>Edit your chat: <%= chat._id %></p>
+        <p>This Chat was sent from <b><%= chat.from %></b> to <b><%= chat.to %></b></p>
+        <form method="POST" action="/chats/<%= chat._id %>?_method=PUT">
+            <textarea name="msg" rows="10" cols="50"><%= chat.msg %></textarea>
+            <button type="submit">Edit</button>
+        </form>
+    </div>
+    
+</body>
+</html>
